@@ -9,6 +9,8 @@ preview—without opening Android Studio.
 [Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) ·
 [Security](SECURITY.md)
 
+![Recomposition Viewer showing the Compose hierarchy, per-node recomposition/skip counts, and a live device preview](docs/screenshots/app-hierarchy-preview.png)
+
 </div>
 
 Recomposition Viewer is an macOS desktop tool for understanding
@@ -57,6 +59,10 @@ mkdir -p ~/.claude/skills/recomposition-inspector && ln -s \
 See [cli/README.md](cli/README.md) for the Codex symlink command, the full
 command reference, and running as an MCP server instead.
 
+Once symlinked, agents use it directly in conversation:
+
+![An AI agent reporting live recomposition and skip counts per composable through the recomposition-inspector skill](docs/screenshots/agent-skill-report.png)
+
 ### 2. Install the macOS app
 
 Download `Recomposition-Viewer-macOS.dmg` from the
@@ -66,9 +72,7 @@ the `Applications` shortcut inside the disk image is a convenience, not a
 requirement.
 
 The app is ad-hoc signed, not notarized, so first launch shows a Gatekeeper
-warning; right-click the app and choose **Open** once to bypass it. If no
-release has been published yet, build the DMG locally instead — see
-[Build and distribute a release](#build-and-distribute-a-release).
+warning; right-click the app and choose **Open** once to bypass it.
 
 ## Requirements
 
