@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="Recomposition Viewer icon">
+  <defs>
+    <linearGradient id="background" x1="146" y1="104" x2="858" y2="920" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1E24"/>
+      <stop offset="1" stop-color="#06080A"/>
+    </linearGradient>
+  </defs>
+  <rect x="64" y="64" width="896" height="896" rx="208" fill="url(#background)"/>
+  <rect x="76" y="76" width="872" height="872" rx="196" fill="none" stroke="#2B3038" stroke-width="12"/>
+  <g transform="translate(192 192) scale(10)">
+    <path d="M22 15L18 7" fill="none" stroke="#F5A624" stroke-width="5" stroke-linecap="round"/>
+    <path d="M42 15L46 7" fill="none" stroke="#F5A624" stroke-width="5" stroke-linecap="round"/>
+    <rect x="13" y="16" width="38" height="40" rx="11" fill="none" stroke="#F0F0F0" stroke-width="6"/>
+    <rect x="21" y="40" width="6" height="8" rx="3" fill="#6A6E73"/>
+    <rect x="29" y="34" width="6" height="14" rx="3" fill="#AEB0B3"/>
+    <rect x="37" y="28" width="6" height="20" rx="3" fill="#F5A624"/>
+  </g>
+</svg>

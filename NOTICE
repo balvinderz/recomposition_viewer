@@ -1,0 +1,12 @@
+Recomposition Viewer
+Copyright 2026 Balvinder Gambhir
+
+This product includes software developed by the Android Open Source Project.
+See plugins/android-compose-inspector/THIRD_PARTY_NOTICES.md for the origin and
+SHA-256 hashes of bundled UI Inspector artifacts.
+
+scrcpy is an external runtime dependency and is not distributed by this
+repository. scrcpy is Copyright 2018 Genymobile and licensed under Apache-2.0.
+
+The bundled Sora and IBM Plex Mono fonts are distributed under the SIL Open
+Font License 1.1. Their license texts and provenance are under assets/fonts/.

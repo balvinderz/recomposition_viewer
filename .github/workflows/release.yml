@@ -1,0 +1,41 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  macos:
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.41.4
+          cache: true
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Build
+        run: |
+          ./scripts/bootstrap.sh --skip-runtime
+          ./scripts/verify.sh
+          ./scripts/build_macos.sh release
+      - name: Package
+        run: |
+          ./scripts/package_dmg.sh release
+          shasum -a 256 dist/Recomposition-Viewer-macOS.dmg \
+            > dist/Recomposition-Viewer-macOS.dmg.sha256
+      - name: Create draft release
+        uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          generate_release_notes: true
+          files: |
+            dist/Recomposition-Viewer-macOS.dmg
+            dist/Recomposition-Viewer-macOS.dmg.sha256

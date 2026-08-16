@@ -1,0 +1,28 @@
+{
+  "name": "android-compose-inspector",
+  "version": "0.2.0",
+  "description": "Inspect live Jetpack Compose recomposition and skip counts without Android Studio.",
+  "author": {
+    "name": "Balvinder Gambhir"
+  },
+  "license": "Apache-2.0",
+  "keywords": ["android", "compose", "recomposition", "inspector"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Android Compose Inspector",
+    "shortDescription": "Track live Compose recompositions from Codex.",
+    "longDescription": "Attaches the official Android UI Inspector agent to a debuggable app and gives Codex live Compose hierarchy, recomposition, skip, bounds, and source-location data without opening Android Studio.",
+    "developerName": "Balvinder Gambhir",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Attach to my Compose app and track recompositions.",
+      "Show the composables recomposing most often.",
+      "Watch recompositions while I reproduce a UI issue."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

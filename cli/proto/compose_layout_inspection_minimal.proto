@@ -1,0 +1,117 @@
+// Wire-compatible subset of AndroidX compose_layout_inspection.proto.
+syntax = "proto3";
+package layoutinspector.compose.inspection;
+
+message StringEntry {
+  int32 id = 1;
+  string str = 2;
+}
+
+message Rect {
+  int32 x = 1;
+  int32 y = 2;
+  int32 w = 3;
+  int32 h = 4;
+}
+
+message Quad {
+  sint32 x0 = 1;
+  sint32 y0 = 2;
+  sint32 x1 = 3;
+  sint32 y1 = 4;
+  sint32 x2 = 5;
+  sint32 y2 = 6;
+  sint32 x3 = 7;
+  sint32 y3 = 8;
+}
+
+message Bounds {
+  Rect layout = 1;
+  Quad render = 2;
+}
+
+message ComposableNode {
+  sint64 id = 1;
+  repeated ComposableNode children = 2;
+  int32 package_hash = 3;
+  int32 filename = 4;
+  int32 line_number = 5;
+  int32 offset = 6;
+  int32 name = 7;
+  Bounds bounds = 8;
+  int32 flags = 9;
+  int64 view_id = 10;
+  int32 recompose_count = 11;
+  int32 recompose_skips = 12;
+  sint32 anchor_hash = 13;
+}
+
+message ComposableRoot {
+  int64 view_id = 1;
+  repeated ComposableNode nodes = 2;
+  repeated int64 views_to_skip = 3;
+}
+
+message GetComposablesCommand {
+  int64 root_view_id = 1;
+  bool skip_system_composables = 2;
+  int32 generation = 3;
+  bool extract_all_parameters = 4;
+  bool allow_empty_if_unchanged = 5;
+}
+
+message GetComposablesResponse {
+  repeated StringEntry strings = 1;
+  repeated ComposableRoot roots = 2;
+  bool unchanged = 3;
+}
+
+message StateReadSettings {
+  message None {}
+  message All {
+    int32 max_state_reads = 1;
+    bool include_parameter_changes = 2;
+  }
+  message ById {
+    int32 max_state_reads = 1;
+    repeated sint32 composable_to_observe = 2;
+    bool include_parameter_changes = 3;
+  }
+  oneof method {
+    None none = 1;
+    All all = 2;
+    ById by_id = 3;
+  }
+}
+
+message UpdateSettingsCommand {
+  bool include_recompose_counts = 1;
+  bool keep_recompose_counts = 2;
+  bool delay_parameter_extractions = 3;
+  bool reduce_child_nesting = 4;
+  StateReadSettings state_read_settings = 5;
+}
+
+message UpdateSettingsResponse {
+  bool can_delay_parameter_extractions = 3;
+  repeated int32 supported_state_read_kind = 4;
+}
+
+message UnknownCommandResponse {
+  bytes command_bytes = 1;
+}
+
+message Command {
+  oneof specialized {
+    GetComposablesCommand get_composables_command = 1;
+    UpdateSettingsCommand update_settings_command = 5;
+  }
+}
+
+message Response {
+  oneof specialized {
+    GetComposablesResponse get_composables_response = 1;
+    UpdateSettingsResponse update_settings_response = 5;
+    UnknownCommandResponse unknown_command_response = 100;
+  }
+}

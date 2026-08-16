@@ -1,0 +1,32 @@
+name: Bug report
+description: Report a reproducible failure in inspection or preview behavior.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Include the operation that failed and what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      placeholder: "1. Attach…\n2. Navigate…\n3. Select…"
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: macOS, Flutter, Android API/ABI, Compose UI, adb, and scrcpy versions.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Remove package secrets, device identifiers, and private app data.
+      render: shell

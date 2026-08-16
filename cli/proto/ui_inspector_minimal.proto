@@ -1,0 +1,76 @@
+// Wire-compatible subset of AOSP ui-inspector/common/proto/ui_inspector.proto.
+syntax = "proto3";
+package ui.inspector.protocol;
+
+message InspectorMessageCommand {
+  string inspector_id = 1;
+  bytes payload = 2;
+}
+
+message InspectorMessageResponse {
+  string inspector_id = 1;
+  bytes payload = 2;
+}
+
+message InspectorMessageEvent {
+  string inspector_id = 1;
+  bytes payload = 2;
+}
+
+message CrashEvent {
+  string error_message = 1;
+  string stack_trace = 2;
+}
+
+message CreateInspectorCommand {
+  string inspector_id = 1;
+  string dex_path = 2;
+}
+
+message CreateInspectorResponse {}
+
+message GetVersionCommand {
+  repeated string library_ids = 1;
+}
+
+message GetVersionResponse {
+  map<string, string> versions = 1;
+}
+
+message Command {
+  uint32 command_id = 1;
+  oneof specialized {
+    InspectorMessageCommand inspector_message = 2;
+    CreateInspectorCommand create_inspector = 4;
+    GetVersionCommand get_version = 5;
+  }
+}
+
+message Response {
+  uint32 command_id = 1;
+  enum Status {
+    SUCCESS = 0;
+    ERROR = 1;
+  }
+  Status status = 2;
+  string error_message = 3;
+  oneof specialized {
+    InspectorMessageResponse inspector_message = 4;
+    CreateInspectorResponse create_inspector = 6;
+    GetVersionResponse get_version = 7;
+  }
+}
+
+message Event {
+  oneof specialized {
+    InspectorMessageEvent inspector_message = 1;
+    CrashEvent crash = 2;
+  }
+}
+
+message AgentMessage {
+  oneof specialized {
+    Response response = 1;
+    Event event = 2;
+  }
+}

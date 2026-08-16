@@ -1,0 +1,55 @@
+[project]
+name = "android-compose-inspector"
+version = "0.2.0"
+description = "MCP server for live Jetpack Compose recomposition inspection"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.11"
+dependencies = [
+  "mcp>=1.13.0,<2",
+  "protobuf>=6.33.4,<7",
+]
+
+[project.urls]
+Homepage = "https://github.com/balvinderg/recomposition-inspector"
+Repository = "https://github.com/balvinderg/recomposition-inspector"
+Issues = "https://github.com/balvinderg/recomposition-inspector/issues"
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.4.0",
+  "pytest-asyncio>=1.1.0",
+  "ruff>=0.12.0",
+]
+
+[project.scripts]
+android-compose-inspector = "android_compose_inspector.server:main"
+compose-inspector = "android_compose_inspector.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/android_compose_inspector"]
+
+[tool.hatch.build]
+artifacts = [
+  "src/android_compose_inspector/artifacts/**",
+  "src/android_compose_inspector/skill_data/**",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.uv]
+package = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["src/android_compose_inspector/generated"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

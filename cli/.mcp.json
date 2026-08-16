@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "android-compose-inspector": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "--project",
+        ".",
+        "python",
+        "-m",
+        "android_compose_inspector.server"
+      ]
+    }
+  }
+}

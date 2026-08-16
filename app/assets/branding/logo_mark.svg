@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Recomposition Viewer mark">
+  <path d="M22 15L18 7" fill="none" stroke="#F5A624" stroke-width="5" stroke-linecap="round"/>
+  <path d="M42 15L46 7" fill="none" stroke="#F5A624" stroke-width="5" stroke-linecap="round"/>
+  <rect x="13" y="16" width="38" height="40" rx="11" fill="none" stroke="#F0F0F0" stroke-width="6"/>
+  <rect x="21" y="40" width="6" height="8" rx="3" fill="#6A6E73"/>
+  <rect x="29" y="34" width="6" height="14" rx="3" fill="#AEB0B3"/>
+  <rect x="37" y="28" width="6" height="20" rx="3" fill="#F5A624"/>
+</svg>

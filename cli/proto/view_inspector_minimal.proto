@@ -1,0 +1,33 @@
+// Wire-compatible subset of AOSP ui-inspector/common/proto/view_inspector.proto.
+syntax = "proto3";
+package ui.inspector.view.inspector.protocol;
+
+message ViewNode {
+  int64 id = 1;
+  repeated ViewNode children = 2;
+}
+
+message WindowInfo {
+  ViewNode root = 1;
+}
+
+message DumpViewsCommand {
+  bool include_attributes = 1;
+  bool include_resolution_stack = 2;
+}
+
+message DumpViewsResponse {
+  repeated WindowInfo windows = 1;
+}
+
+message Command {
+  oneof specialized {
+    DumpViewsCommand dump_views_command = 1;
+  }
+}
+
+message Response {
+  oneof specialized {
+    DumpViewsResponse dump_views_response = 1;
+  }
+}
