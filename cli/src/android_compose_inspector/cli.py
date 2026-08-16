@@ -15,7 +15,7 @@ from .daemon import DEFAULT_PORT, HOST
 CONNECT_TIMEOUT = 1.0
 SPAWN_TIMEOUT = 8.0
 SKILL_INSTALL_PATH = (
-    Path.home() / ".compose-inspector" / "skills" / "compose-inspector-cli" / "SKILL.md"
+    Path.home() / ".recomposition-inspector" / "skills" / "recomposition-inspector-cli" / "SKILL.md"
 )
 
 
@@ -41,7 +41,7 @@ def _spawn_daemon(port: int) -> None:
             return
         time.sleep(0.1)
     raise RuntimeError(
-        f"Timed out waiting for the compose-inspector daemon to start on port {port}"
+        f"Timed out waiting for the recomposition-inspector daemon to start on port {port}"
     )
 
 
@@ -96,7 +96,7 @@ def build_parser() -> argparse.ArgumentParser:
     common.add_argument("--port", type=int, default=DEFAULT_PORT, help="Daemon TCP port")
     common.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")
 
-    parser = argparse.ArgumentParser(prog="compose-inspector")
+    parser = argparse.ArgumentParser(prog="recomposition-inspector")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("prerequisites", parents=[common], help="Check adb and packaged agent artifacts")

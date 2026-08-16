@@ -24,7 +24,7 @@ test = [
 
 [project.scripts]
 android-compose-inspector = "android_compose_inspector.server:main"
-compose-inspector = "android_compose_inspector.cli:main"
+recomposition-inspector = "android_compose_inspector.cli:main"
 
 [build-system]
 requires = ["hatchling"]

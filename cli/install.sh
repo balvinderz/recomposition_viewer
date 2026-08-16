@@ -2,7 +2,7 @@
 # ==============================================================================
 # Android Compose Inspector CLI Installer
 # ==============================================================================
-# Installs the 'compose-inspector' CLI (and the 'android-compose-inspector' MCP
+# Installs the 'recomposition-inspector' CLI (and the 'android-compose-inspector' MCP
 # server entry point) onto the user's system as an isolated `uv tool`, so both
 # commands land on PATH without touching any project virtualenv.
 #
@@ -17,10 +17,10 @@
 set -e
 
 REPO_SLUG="balvinderz/recomposition_viewer"
-REPO_REF="${COMPOSE_INSPECTOR_REF:-main}"
+REPO_REF="${RECOMPOSITION_INSPECTOR_REF:-main}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
-BINARY_NAME="compose-inspector"
+BINARY_NAME="recomposition-inspector"
 FORCE_PIP=""
 
 for arg in "$@"; do
@@ -44,7 +44,7 @@ else
         exit 1
     fi
     INSTALL_SOURCE="git+https://github.com/${REPO_SLUG}@${REPO_REF}#subdirectory=cli"
-    echo "🔎 Remote install; fetching compose-inspector from ${INSTALL_SOURCE}."
+    echo "🔎 Remote install; fetching recomposition-inspector from ${INSTALL_SOURCE}."
 fi
 
 if [ -z "$FORCE_PIP" ] && command -v uv >/dev/null 2>&1; then
@@ -93,12 +93,12 @@ else
 fi
 
 echo "=============================================================================="
-echo "🎉 compose-inspector installed successfully!"
-echo "   AI Skill:  ~/.compose-inspector/skills/compose-inspector-cli/SKILL.md"
+echo "🎉 recomposition-inspector installed successfully!"
+echo "   AI Skill:  ~/.recomposition-inspector/skills/recomposition-inspector-cli/SKILL.md"
 echo "   Test it:   ${BINARY_NAME} --help"
 echo ""
 echo "   Symlink the skill into your agent's skill directory, e.g.:"
-echo "     mkdir -p ~/.claude/skills/compose-inspector && ln -s \\"
-echo "       ~/.compose-inspector/skills/compose-inspector-cli/SKILL.md \\"
-echo "       ~/.claude/skills/compose-inspector/SKILL.md"
+echo "     mkdir -p ~/.claude/skills/recomposition-inspector && ln -s \\"
+echo "       ~/.recomposition-inspector/skills/recomposition-inspector-cli/SKILL.md \\"
+echo "       ~/.claude/skills/recomposition-inspector/SKILL.md"
 echo "=============================================================================="

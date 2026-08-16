@@ -91,8 +91,8 @@ removes that warning entirely. See [RELEASING.md](docs/RELEASING.md).
 ## CLI and optional Codex MCP plugin
 
 The backend under `cli/` also runs independently of the desktop app, either as
-a standalone `compose-inspector` terminal CLI any agent can drive, or as an MCP
-server for Codex.
+a standalone `recomposition-inspector` terminal CLI any agent can drive, or
+as an MCP server for Codex.
 
 Install the CLI with one line — no clone required:
 

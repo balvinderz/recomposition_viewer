@@ -1,8 +1,8 @@
 # Android Compose Inspector
 
 Exposes the official device-side Jetpack Compose inspector to AI coding agents,
-either as an MCP server (Codex) or as a standalone `compose-inspector` CLI any
-agent with a terminal can drive. It provides live recomposition and skip
+either as an MCP server (Codex) or as a standalone `recomposition-inspector`
+CLI any agent with a terminal can drive. It provides live recomposition and skip
 counters without Android Studio, without a debug overlay, and without adding
 instrumentation to the app.
 
@@ -37,12 +37,12 @@ intentionally unsupported. This build currently packages the native agent for
 
 ## CLI usage (any agent)
 
-`compose-inspector` is a normal terminal command — no MCP client required, so
-it works from Claude Code, Codex, Cursor, or any agent that can run a shell
-command. State (the adb port forward and the live agent socket) lives in a
-background daemon that the first command starts automatically; every
-subsequent command talks to that same daemon over `127.0.0.1:8756` until you
-run `compose-inspector stop`.
+`recomposition-inspector` is a normal terminal command — no MCP client
+required, so it works from Claude Code, Codex, Cursor, or any agent that can
+run a shell command. State (the adb port forward and the live agent socket)
+lives in a background daemon that the first command starts automatically;
+every subsequent command talks to that same daemon over `127.0.0.1:8756`
+until you run `recomposition-inspector stop`.
 
 Install it onto `PATH` as an isolated `uv tool` with one line — no clone
 required:
@@ -58,37 +58,37 @@ Or run it inside this project without installing:
 
 ```sh
 uv sync
-uv run compose-inspector prerequisites
+uv run recomposition-inspector prerequisites
 ```
 
 Either way, the workflow is the same:
 
 ```sh
-compose-inspector attach com.example.app
-compose-inspector start-tracking <session_id>
-compose-inspector observe <session_id> --duration-ms 5000
-compose-inspector stop-tracking <session_id>
-compose-inspector detach <session_id>
+recomposition-inspector attach com.example.app
+recomposition-inspector start-tracking <session_id>
+recomposition-inspector observe <session_id> --duration-ms 5000
+recomposition-inspector stop-tracking <session_id>
+recomposition-inspector detach <session_id>
 ```
 
 Every command prints one JSON object to stdout (add `--pretty` for indented
 output) and exits non-zero on failure with `{"error": ..., "error_type": ...}`.
-Run `compose-inspector --help` or `compose-inspector <command> --help` for the
-full flag list, and `compose-inspector sessions` / `compose-inspector stop` to
-inspect or shut down the daemon.
+Run `recomposition-inspector --help` or `recomposition-inspector <command>
+--help` for the full flag list, and `recomposition-inspector sessions` /
+`recomposition-inspector stop` to inspect or shut down the daemon.
 
 The CLI writes a generic `SKILL.md` to
-`~/.compose-inspector/skills/compose-inspector-cli/SKILL.md` on first run.
-Symlink it into whichever agent you use so it always stays current:
+`~/.recomposition-inspector/skills/recomposition-inspector-cli/SKILL.md` on
+first run. Symlink it into whichever agent you use so it always stays current:
 
 ```sh
-mkdir -p ~/.claude/skills/compose-inspector && ln -s \
-  ~/.compose-inspector/skills/compose-inspector-cli/SKILL.md \
-  ~/.claude/skills/compose-inspector/SKILL.md
+mkdir -p ~/.claude/skills/recomposition-inspector && ln -s \
+  ~/.recomposition-inspector/skills/recomposition-inspector-cli/SKILL.md \
+  ~/.claude/skills/recomposition-inspector/SKILL.md
 
-mkdir -p ~/.codex/skills/compose-inspector && ln -s \
-  ~/.compose-inspector/skills/compose-inspector-cli/SKILL.md \
-  ~/.codex/skills/compose-inspector/SKILL.md
+mkdir -p ~/.codex/skills/recomposition-inspector && ln -s \
+  ~/.recomposition-inspector/skills/recomposition-inspector-cli/SKILL.md \
+  ~/.codex/skills/recomposition-inspector/SKILL.md
 ```
 
 ## MCP workflow (Codex)
