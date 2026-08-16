@@ -97,7 +97,7 @@ server for Codex.
 Install the CLI with one line — no clone required:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_inspector/main/cli/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_viewer/main/cli/install.sh | bash
 ```
 
 Or, from a clone, run the MCP server directly from `cli/`:

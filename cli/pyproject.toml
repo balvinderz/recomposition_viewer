@@ -11,9 +11,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/balvinderz/recomposition_inspector"
-Repository = "https://github.com/balvinderz/recomposition_inspector"
-Issues = "https://github.com/balvinderz/recomposition_inspector/issues"
+Homepage = "https://github.com/balvinderz/recomposition_viewer"
+Repository = "https://github.com/balvinderz/recomposition_viewer"
+Issues = "https://github.com/balvinderz/recomposition_viewer/issues"
 
 [project.optional-dependencies]
 test = [

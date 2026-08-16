@@ -48,7 +48,7 @@ Install it onto `PATH` as an isolated `uv tool` with one line — no clone
 required:
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_inspector/main/cli/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_viewer/main/cli/install.sh | bash
 ```
 
 Or, from a local clone, run `./install.sh` directly (also accepts `--pip` to

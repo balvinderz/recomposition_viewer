@@ -11,12 +11,12 @@
 #   ./install.sh --pip           # force a `pip install --user` fallback
 #
 # Remote mode (piped from GitHub, no local checkout needed):
-#   curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_inspector/main/cli/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_viewer/main/cli/install.sh | bash
 # ==============================================================================
 
 set -e
 
-REPO_SLUG="balvinderz/recomposition_inspector"
+REPO_SLUG="balvinderz/recomposition_viewer"
 REPO_REF="${COMPOSE_INSPECTOR_REF:-main}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
