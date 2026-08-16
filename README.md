@@ -5,8 +5,9 @@
 Live Jetpack Compose recomposition counts, hierarchy inspection, and device
 preview—without opening Android Studio.
 
-[Getting started](#getting-started) · [Architecture](docs/ARCHITECTURE.md) ·
-[Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
+[Installing](#installing) · [Getting started](#getting-started) ·
+[Architecture](docs/ARCHITECTURE.md) · [Contributing](CONTRIBUTING.md) ·
+[Security](SECURITY.md)
 
 </div>
 
@@ -29,6 +30,45 @@ instrumentation dependency.
   selected node's physical bounds.
 - Refreshes changed roots and recovers interrupted inspector sessions.
 - Exposes the same inspection backend as an optional Codex MCP plugin.
+
+## Installing
+
+Set up the CLI and its agent skill first, then install the macOS app — the
+two don't depend on each other at install time, so it's fine to grab only one.
+
+### 1. Install the CLI and skill
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_viewer/main/cli/install.sh | bash
+```
+
+This installs `recomposition-inspector` onto `PATH` as an isolated `uv tool`
+and writes a generic `SKILL.md` to
+`~/.recomposition-inspector/skills/recomposition-inspector-cli/SKILL.md`.
+Symlink that file into your agent's skill directory so it knows how to drive
+the CLI — for Claude Code:
+
+```sh
+mkdir -p ~/.claude/skills/recomposition-inspector && ln -s \
+  ~/.recomposition-inspector/skills/recomposition-inspector-cli/SKILL.md \
+  ~/.claude/skills/recomposition-inspector/SKILL.md
+```
+
+See [cli/README.md](cli/README.md) for the Codex symlink command, the full
+command reference, and running as an MCP server instead.
+
+### 2. Install the macOS app
+
+Download `Recomposition-Viewer-macOS.dmg` from the
+[latest release](https://github.com/balvinderz/recomposition_viewer/releases/latest),
+double-click it, and drag `Recomposition Viewer.app` out wherever you want —
+the `Applications` shortcut inside the disk image is a convenience, not a
+requirement.
+
+The app is ad-hoc signed, not notarized, so first launch shows a Gatekeeper
+warning; right-click the app and choose **Open** once to bypass it. If no
+release has been published yet, build the DMG locally instead — see
+[Build and distribute a release](#build-and-distribute-a-release).
 
 ## Requirements
 
@@ -92,15 +132,8 @@ removes that warning entirely. See [RELEASING.md](docs/RELEASING.md).
 
 The backend under `cli/` also runs independently of the desktop app, either as
 a standalone `recomposition-inspector` terminal CLI any agent can drive, or
-as an MCP server for Codex.
-
-Install the CLI with one line — no clone required:
-
-```sh
-curl -fsSL https://raw.githubusercontent.com/balvinderz/recomposition_viewer/main/cli/install.sh | bash
-```
-
-Or, from a clone, run the MCP server directly from `cli/`:
+as an MCP server for Codex. See [Installing](#installing) for the CLI
+one-liner, or run the MCP server directly from a clone:
 
 ```sh
 uv run python -m android_compose_inspector.server
