@@ -7,7 +7,7 @@ license = "Apache-2.0"
 requires-python = ">=3.11"
 dependencies = [
   "mcp>=1.13.0,<2",
-  "protobuf>=6.33.4,<7",
+  "protobuf>=6.33.4,<8",
 ]
 
 [project.urls]
